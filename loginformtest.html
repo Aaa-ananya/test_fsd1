@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            background-color:darkgrey;
+
+        }
+#loginform{
+    background-color:lightgrey;
+    border:2px solid ;
+    height:400px;
+    width:400px;
+    display: flex;
+    flex-direction:column;
+align-content:center;
+justify-content: center;
+align-items:center;
+align-self: center;
+}
+#label{
+    background-color:white;
+    font-size:20px;
+    font-weight:600;
+
+}
+#submit,#reset{
+    font-weight:bold;
+    width:86%;
+
+    background-color:white;
+}
+#name{
+    background-color:white;
+width:95%;
+    height:5%;
+}
+#password{
+    width:95%;
+    height:5%;
+    background-color:white;
+}
+   
+h1{
+    background-color:white;
+}
+    </style>
+</head>
+<body>
+    <form onsubmit="return data()" id="loginform" action="">
+  <h1 id="h1">Login Form</h1>
+        <label id="label" for="name">Name:</label>
+        <input type="text" name="name" id="name" >
+        <br><br>
+        <label id="label" for="password">Password:</label>
+        <input type="text" name="password" id="password" >
+        <br><br>
+        <button type="submit" id="submit" >Submit</button>&NonBreakingSpace;
+        <button type="reset" id="reset">Reset</button>
+    </form>
+    <script>
+        document.getElementById("loginform").addEventListener("submit", function(event) {
+            event.preventDefault(); 
+
+            let a = document.getElementById("name").value;
+            let b = document.getElementById("password").value;
+
+            if (a === "" || b === "") {
+                alert("All fields are mandatory");
+                return false;
+            }
+
+            window.location.href = "./currency.html"; 
+        });
+    </script>
+</body>
+</html>

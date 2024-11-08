@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+    <style>
+*{
+    background:lightgrey;
+}
+        .container{
+            display:flex;
+            flex-direction: column;
+            align-items:center;
+            justify-content:center;
+            align-content:center;
+            border-radius: 10px;
+
+height:500px;
+width:500px;
+border:2px solid black;
+background-color:darkgrey;
+        }
+
+#label{
+    font-weight:bold;
+    font-size:25px;
+}
+#amount, #currency1, #currency2{
+width:90%;
+height:6%;
+border-radius:10px;
+}
+#convert{
+    width:90%;
+    height:6%;
+    font-weight:bold;
+    font-size:19px;
+}
+    </style>
+</head>
+<body><div class="container">
+    <h1 id="h1">Currency convertor</h1>
+    <label for="amount" id="label" >Amount (USD):</label>
+    <input type="number" id="amount" name="amount">
+    <br><br>
+    <label for="currency1" id="label">Currency1 (USD):</label>
+    <input type="number" id="currency1" name="currency1" readonly>
+    <br><br>
+    <label for="currency2" id="label">Currency2 (INR):</label>
+    <input type="number" id="currency2" name="currency2" readonly>
+    <br><br>
+    <button  id="convert"onclick="convertCurrency()">Convert</button>
+    <br><br>
+</div>
+    <script>
+        function convertCurrency() {
+            var amount = document.getElementById("amount").value;
+            if (amount === "") {
+                alert("Please enter an amount in USD.");
+                return;
+            }
+            fetch('https://api.exchangerate-api.com/v4/latest/USD')
+                .then(response => response.json())
+                .then(data => {
+                    const rate = data.rates.INR;
+                    const convertedAmount = amount * rate;
+
+                    
+                    document.getElementById("currency1").value = amount;
+                    document.getElementById("currency2").value = convertedAmount.toFixed(2);
+                })
+                //.catch(error => {
+                  //  console.error("Error fetching the conversion rate:", error);
+                    //alert("Failed to fetch the conversion rate. Please try again later.");
+                //});
+                
+        }
+    </script>
+</body>
+</html>
